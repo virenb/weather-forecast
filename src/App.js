@@ -86,6 +86,7 @@ export default class App extends Component {
                   <CardImg
                     src={`https://openweathermap.org/img/w/${currentIcon}.png`}
                     alt="Weather icon"
+                    width="5%"
                   />
                   <CardBody>
                     <CardText>Temperature: {currentTemp} F</CardText>
@@ -172,6 +173,7 @@ export default class App extends Component {
                               weather.weather[0].icon
                               }.png`}
                             alt="weather icon"
+                            width="5%"
                           />
                           <CardBody>
                             <CardText>Min: {weather.main.temp_min} F</CardText>
