@@ -1,7 +1,7 @@
 ## Weather Forecast Exercise
 
 
-The purpose of this project was to be able to look up a city and retrieve the five day forecast of its weather. The live demo of the project can be found here: [https://priceless-mcnulty-006779.netlify.com/](https://priceless-mcnulty-006779.netlify.com/
+The purpose of this project was to be able to look up a city and retrieve the five day forecast of its weather. The live demo of the project can be found here: https://priceless-mcnulty-006779.netlify.com/
 
 ##### Tools/Libraries used
 
