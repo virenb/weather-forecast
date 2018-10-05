@@ -96,7 +96,6 @@ export default class App extends Component {
   }
 
   render() {
-    const { weather } = this.state;
     return (
       <div>
         <Jumbotron fluid style={{ backgroundColor: "#428bca", color: "white" }}>
@@ -122,43 +121,64 @@ export default class App extends Component {
           </Form>
           {this.displayCurrentWeather()}
           {this.displayError()}
-          {weather
-            .filter((value, index) => {
-              return index % 8 === 0;
-            })
-            .map(weather => {
-              return (
-                <div
-                  key={weather.dt}
-                  style={{ display: "inline-block", margin: "15px" }}
-                >
-                  <div>
+          <div />
+
+          <FiveDayForecast
+            weather={this.state.weather}
+            loading={this.state.loading}
+          />
+        </Container>
+      </div>
+    );
+  }
+}
+
+class FiveDayForecast extends Component {
+  render() {
+    return (
+      <div>
+        {!this.props.loading ? (
+          <div>
+            {this.props.weather
+              .filter((value, index) => {
+                return index % 8 === 0;
+              })
+              .map(weather => {
+                return (
+                  <div
+                    key={weather.dt}
+                    style={{ display: "inline-block", margin: "15px" }}
+                  >
                     <div>
-                      <div
-                        style={{
-                          fontWeight: "600",
-                          fontSize: "16px"
-                        }}
-                      >
-                        {weather.dt_txt.slice(0, 11)}
+                      <div>
+                        <div
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "16px"
+                          }}
+                        >
+                          {weather.dt_txt.slice(0, 11)}
+                        </div>
+                      </div>
+                      <img
+                        src={`https://openweathermap.org/img/w/${
+                          weather.weather[0].icon
+                          }.png`}
+                        alt="weather icon"
+                      />
+                      <div>
+                        <div>Min: {weather.main.temp_min} F</div>
+                        <div>Max: {weather.main.temp_max} F</div>
+                        <div>Condition: {weather.weather[0].main}</div>
                       </div>
                     </div>
-                    <img
-                      src={`https://openweathermap.org/img/w/${
-                        weather.weather[0].icon
-                        }.png`}
-                      alt="weather icon"
-                    />
-                    <div>
-                      <div>Min: {weather.main.temp_min} F</div>
-                      <div>Max: {weather.main.temp_max} F</div>
-                      <div>Condition: {weather.weather[0].main}</div>
-                    </div>
                   </div>
-                </div>
-              );
-            })}
-        </Container>
+                );
+              })}
+          </div>
+        ) : (
+            <div />
+          )}
       </div>
     );
   }
