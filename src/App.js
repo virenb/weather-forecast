@@ -5,11 +5,6 @@ import {
   Button,
   Form,
   Input,
-  Card,
-  CardImg,
-  CardText,
-  CardTitle,
-  CardBody,
   Row,
   Col
 } from "reactstrap";
@@ -81,19 +76,18 @@ export default class App extends Component {
             <Row>
               <Col xs="6" sm="4" />
               <Col xs="6" sm="4">
-                <Card style={{ borderColor: "#428bca", borderStyle: "solid" }}>
-                  <CardBody />
-                  <CardImg
+                <div style={{ borderColor: "#428bca", borderStyle: "solid" }}>
+                  <img
                     src={`https://openweathermap.org/img/w/${currentIcon}.png`}
                     alt="Weather icon"
-                    width="5%"
                   />
-                  <CardBody>
-                    <CardText>Temperature: {currentTemp} F</CardText>
-                    <CardText>Conditions: {currentCondition}</CardText>
-                  </CardBody>
-                </Card>
+                  <div>
+                    <div>Temperature: {currentTemp} F</div>
+                    <div>Conditions: {currentCondition}</div>
+                  </div>
+                </div>
               </Col>
+              <Col sm="4" />
             </Row>
           </Container>
         </div>
@@ -122,8 +116,11 @@ export default class App extends Component {
         <Jumbotron fluid style={{ backgroundColor: "#428bca", color: "white" }}>
           <h1 className="text-center">Local Weather</h1>
         </Jumbotron>
-        <Container fluid className="text-center">
-          <Form onSubmit={this.handleSubmit} className="form-inline">
+        <Container fluid className="text-center justify-content-center">
+          <Form
+            onSubmit={this.handleSubmit}
+            className="form-inline justify-content-center"
+          >
             <Input
               type="text"
               placeholder="Enter US zip code"
@@ -151,39 +148,37 @@ export default class App extends Component {
                     <Row>
                       <Col xs="6" sm="4" />
                       <Col xs="6" sm="4">
-                        <Card
+                        <div
                           style={{
                             borderColor: "#428bca",
                             borderStyle: "solid",
                             margin: "15px"
                           }}
                         >
-                          <CardBody>
-                            <CardTitle
+                          <div>
+                            <div
                               style={{
                                 fontWeight: "600",
                                 fontSize: "16px"
                               }}
                             >
                               Date: {weather.dt_txt.slice(0, 11)}
-                            </CardTitle>
-                          </CardBody>
-                          <CardImg
+                            </div>
+                          </div>
+                          <img
                             src={`https://openweathermap.org/img/w/${
                               weather.weather[0].icon
                               }.png`}
                             alt="weather icon"
-                            width="5%"
                           />
-                          <CardBody>
-                            <CardText>Min: {weather.main.temp_min} F</CardText>
-                            <CardText>Max: {weather.main.temp_max} F</CardText>
-                            <CardText>
-                              Condition: {weather.weather[0].main}
-                            </CardText>
-                          </CardBody>
-                        </Card>
+                          <div>
+                            <div>Min: {weather.main.temp_min} F</div>
+                            <div>Max: {weather.main.temp_max} F</div>
+                            <div>Condition: {weather.weather[0].main}</div>
+                          </div>
+                        </div>
                       </Col>
+                      <Col sm="4" />
                     </Row>
                   </Container>
                 </div>
