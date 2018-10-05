@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Jumbotron,
-  Container,
-  Button,
-  Form,
-  Input,
-  Row,
-  Col
-} from "reactstrap";
+import { Jumbotron, Container, Button, Form, Input } from "reactstrap";
 
 export default class App extends Component {
   state = {
@@ -70,25 +62,19 @@ export default class App extends Component {
       return (
         <div>
           <Container>
-            <h1>
+            <h1 style={{ marginTop: "20px" }}>
               {city}, {country}
             </h1>
-            <Row>
-              <Col xs="6" sm="4" />
-              <Col xs="6" sm="4">
-                <div style={{ borderColor: "#428bca", borderStyle: "solid" }}>
-                  <img
-                    src={`https://openweathermap.org/img/w/${currentIcon}.png`}
-                    alt="Weather icon"
-                  />
-                  <div>
-                    <div>Temperature: {currentTemp} F</div>
-                    <div>Conditions: {currentCondition}</div>
-                  </div>
-                </div>
-              </Col>
-              <Col sm="4" />
-            </Row>
+            <div>
+              <img
+                src={`https://openweathermap.org/img/w/${currentIcon}.png`}
+                alt="Weather icon"
+              />
+              <div>
+                <div>Temperature: {currentTemp} F</div>
+                <div>Conditions: {currentCondition}</div>
+              </div>
+            </div>
           </Container>
         </div>
       );
@@ -100,9 +86,9 @@ export default class App extends Component {
   displayError() {
     if (this.state.error) {
       return (
-        <React.Fragment>
+        <div style={{ color: "red", fontSize: "18px", marginTop: "10px" }}>
           Invalid zip, please try again, with a valid code.
-        </React.Fragment>
+        </div>
       );
     } else {
       return null;
@@ -128,9 +114,8 @@ export default class App extends Component {
               onChange={this.handleChange}
             />
             <Button
-              color="primary"
               onClick={this.handleSubmit}
-              style={{ margin: "0 10px" }}
+              style={{ margin: "0 10px", backgroundColor: "#428bca" }}
             >
               Submit
             </Button>
@@ -143,44 +128,33 @@ export default class App extends Component {
             })
             .map(weather => {
               return (
-                <div key={weather.dt}>
-                  <Container>
-                    <Row>
-                      <Col xs="6" sm="4" />
-                      <Col xs="6" sm="4">
-                        <div
-                          style={{
-                            borderColor: "#428bca",
-                            borderStyle: "solid",
-                            margin: "15px"
-                          }}
-                        >
-                          <div>
-                            <div
-                              style={{
-                                fontWeight: "600",
-                                fontSize: "16px"
-                              }}
-                            >
-                              Date: {weather.dt_txt.slice(0, 11)}
-                            </div>
-                          </div>
-                          <img
-                            src={`https://openweathermap.org/img/w/${
-                              weather.weather[0].icon
-                              }.png`}
-                            alt="weather icon"
-                          />
-                          <div>
-                            <div>Min: {weather.main.temp_min} F</div>
-                            <div>Max: {weather.main.temp_max} F</div>
-                            <div>Condition: {weather.weather[0].main}</div>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col sm="4" />
-                    </Row>
-                  </Container>
+                <div
+                  key={weather.dt}
+                  style={{ display: "inline-block", margin: "15px" }}
+                >
+                  <div>
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: "600",
+                          fontSize: "16px"
+                        }}
+                      >
+                        {weather.dt_txt.slice(0, 11)}
+                      </div>
+                    </div>
+                    <img
+                      src={`https://openweathermap.org/img/w/${
+                        weather.weather[0].icon
+                        }.png`}
+                      alt="weather icon"
+                    />
+                    <div>
+                      <div>Min: {weather.main.temp_min} F</div>
+                      <div>Max: {weather.main.temp_max} F</div>
+                      <div>Condition: {weather.weather[0].main}</div>
+                    </div>
+                  </div>
                 </div>
               );
             })}
